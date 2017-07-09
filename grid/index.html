@@ -1,0 +1,80 @@
+<html>
+  <head>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script> 
+  </head>
+  <body>
+    <div id="container">
+    </div>
+  </body>
+</html>
+
+<style>
+  #container {
+  	display : table;
+  }
+
+  .field-row {
+  	display: table-row;
+  }
+
+  .field-col {
+  	display: table-cell;
+  	border: 1px solid black;
+  	width: 50px;
+  	height: 40px;
+  }
+
+  .class-red {
+  	background-color: red;
+  }
+</style>
+
+<script language="javascript">
+  $(document).ready(function() {
+  	var content='';
+  	for(var i=0;i<10;i++) {
+  		content += '<div class="field-row">';
+  		for(var j=0;j<10;j++) {
+  			content += '<div class="field-col" id="div-' + i + j + '">&nbsp;</div>';
+  		}
+  		content += '</div>';
+  	}
+  	$('#container').html(content);
+
+  	$('#div-00').addClass("class-red");
+
+  	var r=0, c=0, pc=0, pr=0;
+  	$(document).on('keydown', function(e) {
+  		pc=c;
+  		pr=r;
+  		if(e.key == 'ArrowRight') {
+  			if(c <= 8) {
+  				c++;
+  			}
+  		} else if(e.key == 'ArrowLeft') {
+  			if(c >=1) { 
+  				c--;
+  			}
+  		} else if(e.key == 'ArrowUp') {
+  			if(r >=1) {
+  				r--;
+  			}
+  		} else if(e.key == 'ArrowDown') {
+  			if(r <=8) {
+  				r++;
+  			}
+  		}
+  		$('#div-'+pr+pc).removeClass('class-red');
+  		$('#div-'+r+c).addClass('class-red');
+  	});
+  });
+
+
+</script>
+
+
+
+
